@@ -116,28 +116,15 @@ def GetGridpackOfLHE(thisLHE):
     
     return gridpack
 
-if __name__ == '__main__2':
-    whichStep='Nano'
-    req_root='HIG-RunIIFall17NanoAODv5-00824'
-    req=GetDRofMiniAOD(req_root)
-    #req=PrintStepPrepID(whichStep,req_root)
-    print req
 
+def RunCPSchecker(rootlist,filename):
+    
 
-if __name__ == '__main__':
-
-
-    #rootlist=GetRootRequstList(KEY,sheet,cell_range)
-    rootlist=['HIG-RunIIFall17MiniAODv2-02133']
-    dic_LHE={}
-
-    f=open('gridpack_check_CPS.txt','w')
+    f=open(filename,'w')
     for req_mini in rootlist:
         thisLHE=GetLHEofMiniAOD(req_mini)
-        #DRlist.append(thisDR)
-        dic_LHE[req_mini]=thisLHE
         thisgridpack=GetGridpackOfLHE(thisLHE)
-        #print thisgridpack
+        print thisgridpack
         CPS=False
         os.system('mkdir _temp_')
         os.chdir('_temp_')
@@ -151,7 +138,75 @@ if __name__ == '__main__':
         os.chdir('../')
         os.system('rm -rf _temp_')
     f.close()
-        
 
-        
+
+if __name__ == '__main__2':
+    whichStep='Nano'
+    req_root='HIG-RunIIFall17NanoAODv5-00824'
+    req=GetDRofMiniAOD(req_root)
+    #req=PrintStepPrepID(whichStep,req_root)
+    print req
+
+
+if __name__ == '__main__':
+
+
+    #rootlist=GetRootRequstList(KEY,sheet,cell_range)
+    Autumn18rootlist=[
+'HIG-RunIIAutumn18MiniAOD-01085',
+'HIG-RunIIAutumn18MiniAOD-01366',
+'HIG-RunIIAutumn18MiniAOD-01367',
+'HIG-RunIIAutumn18MiniAOD-01086',
+'HIG-RunIIAutumn18MiniAOD-01368',
+'HIG-RunIIAutumn18MiniAOD-01087',
+'HIG-RunIIAutumn18MiniAOD-01088',
+'HIG-RunIIAutumn18MiniAOD-01092',
+'HIG-RunIIAutumn18MiniAOD-01091',
+'HIG-RunIIAutumn18MiniAOD-01089',
+'HIG-RunIIAutumn18MiniAOD-01090',
+'HIG-RunIIAutumn18MiniAOD-01093',
+'HIG-RunIIAutumn18MiniAOD-01094',
+'HIG-RunIIAutumn18MiniAOD-01095',
+'HIG-RunIIAutumn18MiniAOD-01096',
+'HIG-RunIIAutumn18MiniAOD-01097',
+'HIG-RunIIAutumn18MiniAOD-01098',
+'HIG-RunIIAutumn18MiniAOD-01099',
+'HIG-RunIIAutumn18MiniAOD-01100',
+'HIG-RunIIAutumn18MiniAOD-01101',
+'HIG-RunIIAutumn18MiniAOD-01102',
+'HIG-RunIIAutumn18MiniAOD-01103',
+'HIG-RunIIAutumn18MiniAOD-01294',
+'HIG-RunIIAutumn18MiniAOD-01295',
+]
+
+
+    RunCPSchecker(Autumn18rootlist,'Autumn18_gridpack_check_CPS.txt')    
     
+
+    Fall17rootlist=[
+'HIG-RunIIFall17MiniAODv2-02146',
+'HIG-RunIIFall17MiniAODv2-04172',
+'HIG-RunIIFall17MiniAODv2-04202',
+'HIG-RunIIFall17MiniAODv2-02147',
+'HIG-RunIIFall17MiniAODv2-04188',
+'HIG-RunIIFall17MiniAODv2-02148',
+'HIG-RunIIFall17MiniAODv2-02149',
+'HIG-RunIIFall17MiniAODv2-02150',
+'HIG-RunIIFall17MiniAODv2-02151',
+'HIG-RunIIFall17MiniAODv2-02152',
+'HIG-RunIIFall17MiniAODv2-02153',
+'HIG-RunIIFall17MiniAODv2-02154',
+'HIG-RunIIFall17MiniAODv2-02155',
+'HIG-RunIIFall17MiniAODv2-02156',
+'HIG-RunIIFall17MiniAODv2-02157',
+'HIG-RunIIFall17MiniAODv2-02158',
+'HIG-RunIIFall17MiniAODv2-02159',
+'HIG-RunIIFall17MiniAODv2-02160',
+'HIG-RunIIFall17MiniAODv2-02161',
+'HIG-RunIIFall17MiniAODv2-02162',
+'HIG-RunIIFall17MiniAODv2-02163',
+'HIG-RunIIFall17MiniAODv2-02164',
+'HIG-RunIIFall17MiniAODv2-04151',
+'HIG-RunIIFall17MiniAODv2-04152',
+]
+    RunCPSchecker(Fall17rootlist,'Fall17_gridpack_check_CPS.txt')
