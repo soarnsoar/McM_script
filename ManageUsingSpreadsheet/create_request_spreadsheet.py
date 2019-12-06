@@ -230,8 +230,11 @@ def Run(idx_row,KEY,sheet):
         title=title_list[i]
         #print title
         value=info_list[i]
+        
         #print value
-        if not value.replace(' ','')=='': this_dic[title]=value
+        if not value.replace(' ','')=='':
+            #print title 
+            this_dic[title]=value
         
     
     ##Combine card refs
@@ -257,7 +260,7 @@ def Run(idx_row,KEY,sheet):
 
 
     print this_dic['dataset_name']
-
+    #print this_dic['PrepID']
 
     
     new_request = {'pwg': 'HIG', 'member_of_campaign': this_dic['member_of_campaign'],'dataset_name':this_dic['dataset_name'],'generators':this_dic['generators'].split(','),"fragment":FullFragment,'generator_parameters':generator_parameters,'total_events':int(this_dic['total_events']),'mcdb_id':0,'size_event':this_dic['size_event'],'time_event':this_dic['time_event']}
@@ -273,6 +276,7 @@ def Run(idx_row,KEY,sheet):
             
             this_request[key]=new_request[key]
         if not this_request['approval'] == 'none':
+            print "already submiited"
             return this_dic["PrepID"]+'not None status, not updated'
 
         update=mcm.update('requests', this_request)
@@ -326,9 +330,10 @@ if __name__ == '__main__':
     else:
         log='log_prepid.txt'
 
-    nrow=getNrow(key,sheet)
+    #nrow=getNrow(key,sheet)
+    nrow=1
     f=open(log,'w')
-    for i in range(2,nrow+1):
+    for i in range(2,nrow+2):
         #for i in range(2,3):
         out=Run(i,key,sheet)
         if out!="" and out!=None:  
