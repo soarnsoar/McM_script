@@ -272,6 +272,8 @@ def Run(idx_row,KEY,sheet):
         for key in new_request:
             
             this_request[key]=new_request[key]
+        if not this_request['approval'] == 'none':
+            return this_dic["PrepID"]+'not None status, not updated'
         update=mcm.update('requests', this_request)
         
         return this_dic["PrepID"]+str(update['results'])
